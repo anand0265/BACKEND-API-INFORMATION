@@ -20,8 +20,8 @@ export const createUser = async (data: IUser) => {
 const values = [
   data.email,
   data.phone,
-  data.email_verified ?? false,     
-  data.phone_verified ?? false,     
+  data.email_verified,     
+  data.phone_verified,     
   data. password_hash,                    
   data.season,
   data.status
@@ -33,8 +33,6 @@ const values = [
 
 
 export const updateUser = async (id: number, data: IUser) => {
-
-  const hashedPassword = await bcrypt.hash(data.password_hash, 10);
 
   const query = "UPDATE users SET email = ?, phone = ?,password_hash = ?,email_verified = ?,phone_verified = ?,season = ?, status = ? WHERE id = ?";
   const values = [data.email, hashedPassword, id];
