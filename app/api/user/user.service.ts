@@ -35,10 +35,10 @@ const values = [
 export const updateUser = async (id: number, data: IUser) => {
 
   const query = "UPDATE users SET email = ?, phone = ?,password_hash = ?,email_verified = ?,phone_verified = ?,season = ?, status = ? WHERE id = ?";
-  const values = [data.email, hashedPassword, id];
+  const values = [data.email,data.phone,data.password_hash,data.email_verified,data.phone_verified,data.season,data.status, id];
   await pool.execute(query, values);
 
-  return { id, ...data, password_hash: hashedPassword }; 
+  return { id, ...data }; 
 };
 
 
